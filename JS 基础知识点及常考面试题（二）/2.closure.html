@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 什么是闭包？
+    // 闭包的定义其实很简单：函数 A 内部有一个函数 B，函数 B 可以访问到函数 A 中的变量，那么函数 B 就是闭包.
+    function A() {
+        let a = 1
+        window.B = function () {
+            console.log(a)
+        }
+    }
+    A()
+    B() // 1
+    // 很多人对于闭包的解释可能是函数嵌套了函数，然后返回一个函数。其实这个解释是不完整的，就比如我上面这个 例子就可以反驳这个观点。
+    // 在 JS 中，闭包存在的意义就是让我们可以间接访问函数内部的变量。
+
+    // 经典面试题，循环中使用闭包解决 var 定义函数的问题
+    for (var i = 1; i <= 5; i++) {
+        setTimeout(function timer() {
+            console.log(i) // 6 6 6 6 6
+        }, i * 1000)
+    }
+    // 首先因为 setTimeout 是个异步函数，所以会先把循环全部执行完毕，这时候 i 就是 6 了，所以会输出一堆 6。
+    // 解决办法有三种，第一种是使用闭包的方式
+    for (var i = 1; i <= 5; i++) {
+        (function(j) {
+            setTimeout(function timer() {
+                console.log(j)
+            }, j * 1000)
+        })(i)
+    }
+    // 在上述代码中，我们首先使用了立即执行函数将 i 传入函数内部，这个时候值就被固定在了参数 j 上面不会改变，
+    // 当下次执行 timer 这个闭包的时候，就可以使用外部函数的变量 j ，从而达到目的。
+
+    // 第二种就是使用 setTimeout 的第三个参数，这个参数会被当成 timer 函数的参数传入。
+    for (var i = 1; i <= 5; i++) {
+        setTimeout( function timer(j) {
+            console.log(j)
+        },i * 1000, i ) // 这里的i会被当做timer()函数的参数带进去，i为1,2,3,4，5
+    }
+
+    // 第三种就是使用 let 定义 i 了来解决问题了，这个也是最为推荐的方式
+    for (let i = 1; i <= 5; i++) {
+        setTimeout(function timer() {
+            console.log(i)
+        }, i * 1000)
+    }
+</script>
+</html>

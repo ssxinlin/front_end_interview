@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态样式</title>
+    <!-- 可以直接通过<link>元素加载外部样式 -->
+    <!-- <link rel="stylesheet" type="text/css" href="foo.css"> -->
+    <style>
+        /* 另一种定义样式的方式是使用<style>元素包含嵌入的CSS规则 */
+    </style>
+</head>
+<body>
+    <div class="myDiv">Hello World</div>
+</body>
+<script>
+    // 也可以使用DOM编程创建出来
+    let link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.type = "text/css"
+    link.href = "foo.css"
+    let head = document.getElementsByTagName("head")[0]
+    head.appendChild(link)
+</script>
+</html>

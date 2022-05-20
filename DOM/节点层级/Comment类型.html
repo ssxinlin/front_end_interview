@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment类型</title>
+</head>
+<body>
+    <div id="myDiv"><!-- A comment --></div>
+</body>
+<script>
+    let div = document.getElementById("myDiv")
+    let comment = div.firstChild
+    console.log(comment)
+    console.log(comment.nodeType) // 等于8
+    console.log(comment.nodeName) // 值为"#comment"
+    console.log(comment.nodeValue) // 值为注释的内容
+    console.log(comment.parentNode) // 值为Document或Element对象
+
+    let commentCreate = document.createComment("B comment")
+    console.log(commentCreate)
+</script>
+</html>

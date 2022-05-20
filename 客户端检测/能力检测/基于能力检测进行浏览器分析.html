@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基于能力检测进行浏览器分析</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1.检测特性
+
+    // 检测浏览器是否支持Netscape式的插件
+    let hasNSPlugins = !!(navigator.plugins && navigator.plugins.length)
+
+    // 检测浏览器是否具有DOM Level 1 能力
+    let hasDOM1 = !!(document.getElementById && document.createElement && document.getElementsByTagName)
+
+
+    // 2.检测浏览器
+
+    class BrowserDetector {
+        constructor() {
+            // 检测条件编译
+            // IE6 ~ 10支持
+            this.isIE_Gte6Lte10 = /*@cc_on!@*/false ;
+            
+            // 测试documentMode
+            this.isIE_Gte7Lte11 = !!document.documentMode
+
+            // 测试StyleMedia构造函数
+            this.isEdge_Gte20 = !!window.StyleMedia
+
+            // 测试Firefox专有扩展安装API
+            // 所有版本的Firefox都有支持
+            this.isFirefox_Gte1 = typeof InstallTrigger !== 'undefined'
+
+            // 测试chrome对象及其webstore属性
+            // Opera的某些版本有window.chrome，但没有window.chrome.webstore
+            this.isChrome_Gte1 = !!window.chrome && !!window.chrome.webstore
+
+            // Safari早期版本会给构造函数的标签符追加"Constructor"字样，如：
+            // window.Element.toString(); // [object ElementConstructor]
+            // Safari 3 ~ 9.1 支持
+            this.isSafari_Gte3Lte9_1 = /constructor/i.test(window.Element)
+
+            // 推送通知API暴露在window对象上
+            // 使用默认参数值以避免对undefined调用toString()
+            // Safari 7.1及以上版本支持
+            this.isSafari_Gte7_1 = 
+            (({pushNotification = { } } = { }) => 
+            pushNotification.toString() == '[object SafariRemoteNotification]' )(window.safari)
+
+            // 测试addons属性
+            // Opera 20及以上版本支持
+            this.isOpera_Gte20 = !!window.opr && window.opr.addons
+        }
+        isIE() { return this.isIE_Gte6Lte10 || this.isIE_Gte7Lte11 }
+        isEdge() { return this.isEdge_Gte20 && this.isIE() }
+        isFirefox() { return this.isFirefox_Gte1 }
+        isChrome() { return this.isChrome_Gte1 }
+        isSafari() { return this.isSafari_Gte3Lte9_1 || this.isSafari_Gte7_1 }
+        isOpera() { return this.isOpera_Gte20 }
+    }
+
+
+    // 3.能力检测的局限
+
+    // 不要这样做！不够特殊
+    let isFirefox = !!(navigator.vendor && navigator.vendorSub)
+
+    // 不要这样做！假设太多
+    let isIE = !!(document.all && document.uniqueID)
+</script>  
+</html>

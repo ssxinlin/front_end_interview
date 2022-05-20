@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attr类型</title>
+</head>
+<body>
+    <div id="myDiv"></div>
+</body>
+<script>
+    // 元素数据在DOM中通过Attr类型表示。Attr类型构造函数和原型在所有浏览器中都可以直接访问。
+
+    let attr = document.createAttribute("align")
+    attr.value = "left"
+    let div = document.getElementById("myDiv")
+    div.setAttributeNode(attr)
+    console.log(div)
+    console.log(div.attributes["align"].value)
+    console.log(div.getAttributeNode("align").value)
+    console.log(div.getAttribute("align"))
+    
+    console.log(attr.nodeType)// nodeType等于2
+    console.log(attr.nodeName)// nodeName值为属性名
+    console.log(attr.nodeValue)// nodeValue值为属性值
+    console.log(attr.parentNode)// parentNode值为null
+</script>
+</html>

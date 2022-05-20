@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global作用域</title>
+</head>
+<body>
+   
+</body>
+<script>
+    // var age = 29
+    // var sayAge = () => alert(this.age)
+
+    // alert(window.age)
+    // sayAge()
+    // window.sayAge()
+
+    let age = 29
+    const sayAge = () => alert(this.age)
+
+
+    // 这不会抛出错误，因为这里是属性查询，newValue会被设置为undefined
+    var newValue = window.oldValue
+
+    // JavaScript中有很多对象都暴露在全局作用域中，比如location和navigator，因而它们都是window对象的属性。
+</script>
+</html>

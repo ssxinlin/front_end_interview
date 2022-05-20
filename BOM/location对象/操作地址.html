@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作地址</title>
+</head>
+<body>
+    <p>Enjoy this page for a second, because you won't be coming back here.</p>
+    <script>
+        setTimeout(() => location.replace("http://www.wrox.com."), 1000)
+    </script>  
+</body>
+<script>
+    // location.assign("http://www.wrox.com")
+    // window.location = "http://www.wrox.com"
+    // location.href = "http://www.wrox.com"
+
+    // 假设当前URL为"http://www.wrox.com/WileyCDA"
+
+    //把URL修改为"http://www.wrox.com/WileyCDA/#section1"
+    location.hash = '#section1'
+
+    //把URL修改为"http://www.wrox.com/WileyCDA/?q=javascript"
+    location.search = '?q=javascript'
+
+    //把URL修改为"http://www.somewhere.com/WileyCDA"
+    location.hostname = 'www.somewhere.com'
+
+    //把URL修改为"http://www.somewhere.com/mydir"
+    location.pathname = 'mydir'
+
+    //把URL修改为"http://www.somewhere.com:8080/WileyCDA"
+    location.port = 8080
+
+    // location.reload() // 重新加载，可能是从缓存加载
+    // location.reload(true) // 重新加载，从服务器加载
+</script>
+</html>

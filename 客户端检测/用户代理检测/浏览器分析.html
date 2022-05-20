@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览器分析</title>
+</head>
+<body>
+    
+</body>
+<script>
+    console.log(window.navigator.userAgent)
+    // Mozilla/5.0 (window NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chorme/65.0.3325.181 Safari/537.36
+
+    // 1.伪造用户代理
+    // userAgent是个只读属性，简单得给这个属性设置值不会有效
+    window.navigator.userAgent = 'foobar'
+    console.log(window.navigator.userAgent)
+    // Mozilla/5.0 (window NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chorme/65.0.3325.181 Safari/537.36
+
+    // 有些浏览器提供私有的__defineGetter__方法，利用它可以篡改用户代理字符串
+    window.navigator.__defineGetter__('userAgent', () => 'foobar')
+    console.log(window.navigator.userAgent)
+    // foobar
+
+    // 2.分析浏览器
+    // 通过解析浏览器返回的用户代理字符串，可以极其准确地推断出下列相关的环境信息：
+    // 浏览器
+    // 浏览器版本
+    // 浏览器渲染引擎
+    // 设备类型（桌面/移动）
+    // 设备生产商
+    // 设备型号
+    // 操作系统
+    // 操作系统版本
+</script>  
+</html>

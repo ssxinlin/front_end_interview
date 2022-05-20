@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型类型</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 在js中，一共有六种基本（原始）类型： boolean、string、number、null、undefined、symbol
+    // 有一种复杂数据类型：Object；或者说是三种引用数据类型：Object、Function、Array
+    // 对象类型和原始类型不同的是，原始类型存储的是值，对象类型存储的是地址（指针）。
+    // 当你创建了一个对象类型的时候，计算机会在内存中帮我们开辟一个空间来存放值， 但是我们需要找到这个空间，这个空间会拥有一个地址（指针）。
+    function test(person) {
+        person.age = 26
+        person = { name: 'yyy', age: 30 }
+        return person
+    }
+    const p1 = { name: 'yck', age: 25 }
+    const p2 = test(p1)
+    // 首先，函数传参是传递对象指针的副本 到函数内部修改参数的属性这步，
+    // 我相信大家都知道，当前 p1 的值也被修改了
+    // 但是当我们重新为 person 分配了一个对象时就出现了分歧，
+    // 最后 person 拥有了一个新的地址（指针），也就和 p1 没有任何关系了，导致了最终两个变量的值是不相同 的
+    console.log(p1) // -> ? { name: 'yck', age: 25 }
+    console.log(p2) // -> ? { name: 'yyy', age: 30 }
+
+
+</script>
+</html>

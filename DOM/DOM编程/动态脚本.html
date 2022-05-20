@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态脚本</title>
+    <!-- 可以直接通过<script>元素加载外部脚本 -->
+    <!-- <script src="foo.js"></script> -->
+</head>
+<body>
+</body>
+<script>
+    function loadScript(url) {
+        let script1 = document.createElement("script")
+        script1.src = url
+        document.body.appendChild(script1)
+    }
+    // 调用loadScript方法就可以加载外部文件了
+    loadScript("foo.js")
+</script>
+<script>
+    // 可在Firefox、Safari、Chrome和Opera中运行
+    let script2 = document.createElement("script")
+    script2.appendChild(document.createTextNode("function sayHi(){ console.log('Hi') }"))
+    document.body.appendChild(script2)
+</script>
+<script>
+    // 在旧版本的IE中运行
+    let script3 = document.createElement("script")
+    script3.text = "function sayHello() { 'Hello' }"
+    document.body.appendChild(script3)
+</script>
+<script>
+    // 兼容版本
+    let script4 = document.createElement("script")
+    var code = "function say() { console.log('你好') }"
+    try {
+        script4.appendChild(document.createTextNode(code))
+    } catch (e) {
+        script4.text = code
+    }
+    document.body.appendChild(script4)
+</script>
+</html>

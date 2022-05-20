@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>反转链表————LeetCode.206</title>
+</head>
+<body>
+<script>
+    /**
+    给你单链表的头节点 head ，请你反转链表，并返回反转后的链表
+    输入：head = [1,2,3,4,5]
+    输出：[5,4,3,2,1]
+    */
+    /**
+      * 将数组转换为链表
+      * @param array arr  需要转换的数组
+      * @param int  type  转换的类型，0为单链表，1为循环链表
+      * @return object    返回链表
+      */
+    function arrayList(arr, type = 0) {
+        if (!arr.length) return null;
+        let header = {  index: 0,next: null  };
+
+        let obj = header;
+        for (let i = 1; i <= arr.length; i++) {
+            obj.next = { index: i, next: null };
+            obj = obj.next;
+        }
+        if (type) obj.next = header;
+        return header;
+    }
+    var reverseList = function(head = [1, 2, 3, 4, 5]) {
+        head = arrayList(head)
+        if(!head || !head.next) return head;
+        let temp = null, pre = null, cur = head;
+        while(cur) {
+            temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
+        }
+        return pre;
+    };
+    console.log(reverseList())
+</script>
+</body>
+</html>

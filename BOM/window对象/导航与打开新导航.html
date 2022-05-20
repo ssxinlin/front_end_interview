@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航与打开新导航</title>
+</head>
+<body>
+    <div>
+        <a href="http://www.wrox.com" target="topFrame">链接</a>
+    </div>
+    <div>
+        <button onclick="clickBtn()">点击</button>
+    </div>
+    <div>
+        <button onclick="openBtn()">按钮</button>
+    </div>
+</body>
+<script>
+    function clickBtn() {
+        // 打开一个可缩放的新窗口，大小为400像素*400像素，位于离屏幕左边及顶边各10像素的位置
+        let wroxWin = window.open("http://www.wrox.com", 
+                    "wroxWindow", 
+                    "height=400, width=400, top=10, left=10, resizeable=yes")
+        
+        // 缩放
+        wroxWin.resizeTo(600, 800)
+        
+        // 移动
+        wroxWin.moveTo(100, 100)
+
+        // 关闭新打开的窗口
+        // setTimeout(()=> {
+        //     wroxWin.close()
+        // }, 3000)
+
+        // 新创建的窗口的window对象有一个属性opener，指向打开它的窗口
+        console.log(wroxWin.opener === window)
+    }
+
+    function openBtn() {
+        let blocked = false
+        try {
+            let wroxWin = window.open("http://www.wrox.com", "_blank")
+            if(wroxWin == null) {
+                blocked = true
+            }
+        } catch(ex) {
+            blocked = false
+        }
+        if(blocked) {
+            console.log("The popup was blocked!")
+        }
+    }
+</script>
+</html>

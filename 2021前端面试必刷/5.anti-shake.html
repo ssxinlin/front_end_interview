@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>防抖函数的理解以及实现</title>
+</head>
+<body>
+<input type="text" id="input">
+<script>
+    // 当持续触发事件，一定时间内没有再次触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时
+    // 触发事件  一段时间内  没有触发  事件执行  肯定是定时器
+    // （在设定时间内  又一次触发事件  重新开始延时  代表的就是重新开始定时器）
+    // （那么意味着上一次还没有结束的定时器要重新清楚掉  重新开始）
+    var input = document.getElementById('input')
+    function debounce(delay,callback){
+        let timer
+        return function (value) {
+            clearTimeout(timer)
+            // 我们想清除的是setTimeout 我们应该存储这个timer的变量
+            // timer变量需要一直保存在内存当中  内存的泄漏 闭包
+            // 既然你不想打印之前已经输入的结果，清除以前触发的定时器
+            timer = setTimeout(function (){
+                // console.log(value) // 输出了结果，我想让结果不再这里输出，而是在外面输出
+                callback(value)
+            },delay)
+        }
+    }
+    // 这个位置输出的话 应该怎么办
+    // 我们需要的是 首先 输入框的结果只出现一次 是在我键盘抬起不再输入后的一秒之后
+    function fn(value){
+        console.log(value)
+    }
+    var debounceInput = debounce(1000,fn)
+    input.addEventListener('keyup',function (e) {
+        debounceInput(e.target.value)
+    })
+</script>
+</body>
+</html>

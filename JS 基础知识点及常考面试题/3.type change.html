@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类型转换</title>
+</head>
+<body>
+
+</body>
+<script>
+    //      原始值                 转换目标        结果
+    //      number                布尔值      除了0、-0、NaN都为true
+    //      string                布尔值      除了空字符串都为true
+    //      undefined、null       布尔值      False
+    //      引用类型               布尔值      True
+    //      number                字符串      5 => '5'
+    //      Boolean、函数、Symbol  字符串      'true'
+    //      数组                  字符串       [1,2] => '1,2'
+    //      对象                  字符串       '[object Object]'
+    //      string                数字        '1' => 1  'a' => NaN
+    //      数组                   数字         空数组为0，存在一个元素且为数字转数字，其他情况NaN
+    //      null                  数字        0
+    //      除了数组的引用类型       数字        NaN
+    //      Symbol                数字       报错
+
+    //  转boolean，在条件判断时，除了undefined、null、false、NaN、''、0、-0，其他所有值都转为true，包括对象
+</script>
+</html>

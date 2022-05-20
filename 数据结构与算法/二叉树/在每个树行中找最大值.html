@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>在每个树行中找最大值————LeetCode.515</title>
+</head>
+<body>
+<script>
+    /**
+     给定一个非空二叉树, 返回一个由每层节点平均值组成的数组。
+    */
+    /**
+     示例：
+     输入: root = [1,3,2,5,3,null,9]
+     输出: [1,3,9]
+     */
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val, left, right) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.left = (left===undefined ? null : left)
+     *     this.right = (right===undefined ? null : right)
+     * }
+     */
+
+    /**
+     * @param {TreeNode} root
+     * @return {number[][]}
+     *
+     * 解法一：
+     */
+    var levelOrder1 = function(root) {
+        let res = [], queue = []
+        queue.push(root)
+        while (root !== null && queue.length) {
+            let length = queue.length
+            let max = queue[0].val
+            while(length--) { // for循环不可以替代while(length--)
+                let node = queue.shift()
+                max = max > node.val ? max : node.val
+                node.left && queue.push(node.left)
+                node.right && queue.push(node.right)
+            }
+            res.push(max)
+        }
+        return res
+    }
+
+    /**
+     * @param {TreeNode} root
+     * @return {number[][]}
+     *
+     * 解法二：
+     */
+    var levelOrder2 = function(root) {
+        let res = [], queue = []
+        queue.push(root)
+        while (root !== null && queue.length) {
+            let length = queue.length
+            let curLevel = []
+            while(length--) { // for循环不可以替代while(length--)
+                let node = queue.shift()
+                curLevel.push(node.val)
+                node.left && queue.push(node.left)
+                node.right && queue.push(node.right)
+            }
+            res.push(Math.max(...curLevel))
+        }
+        return res
+    }
+</script>
+</body>
+</html>

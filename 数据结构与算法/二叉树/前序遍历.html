@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>前序遍历————LeetCode.144</title>
+</head>
+<body>
+<script>
+    /**
+     给你二叉树的根节点 root ，返回它节点值的 前序 遍历。
+    */
+    /**
+     示例1：
+     输入：root = [1,null,2,3]
+     输出：[1,2,3]
+
+     示例2：[]
+     输出：[]
+     */
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val, left, right) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.left = (left===undefined ? null : left)
+     *     this.right = (right===undefined ? null : right)
+     * }
+     */
+    /**
+     * @param {TreeNode} root
+     * @return {number[]}
+     * 第一种递归遍历
+     */
+    var preorderTraversal1 = function(root) {
+        let res = []
+        const dfs = function(root) {
+            if (root === null) return
+            res.push(root.val)
+            dfs(root.left)
+            dfs(root.right)
+        }
+        dfs(root)
+        return res
+    };
+
+    /**
+     * @param {TreeNode} root
+     * @return {number[]}
+     * 第二种递归遍历
+     */
+    var preorderTraversal2 = function(root, res = []) {
+        if(root === null) return []
+        res.push(root.val)
+        preorderTraversal2(root.left, res)
+        preorderTraversal2(root.right, res)
+        return res
+    };
+
+    /**
+     * @param {TreeNode} root
+     * @return {number[]}
+     * 第三种迭代遍历
+     */
+    var preorderTraversal3 = function(root) {
+        let res = [], stack = []
+        if(!root) return []
+        stack.push(root)
+        while(stack.length) {
+            let bit = stack.pop()
+            bit.val ? res.push(bit.val) : ''
+            bit.right ? stack.push(bit.right) : ''
+            bit.left ? stack.push(bit.left) : ''
+        }
+        return res
+    };
+</script>
+</body>
+</html>

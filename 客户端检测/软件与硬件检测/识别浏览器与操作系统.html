@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>识别浏览器与操作系统</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1.navigator.oscpu
+    // navigator.oscpu属性是一个字符串，通常对应用户代理字符串中操作系统/系统架构相关信息
+    // oscpu属性的获取方式必须返回空字符串或者表示浏览器所在平台的字符串
+    console.log(navigator.userAgent)
+    // "Mozilla/5.0 (window NT 10.0; Win64; x64; rv: 58.0) Gecko/20100101 Firefox/58.0"
+    console.log(navigator.oscpu)
+    // "Windows NT 10.0; Win64; x64"
+
+    // 2.navigator.vendor
+    // navigator.vendor属性是一个字符串，通常包含浏览器开发商信息。返回这个字符串是浏览器navigator兼容模式的一个功能。
+    // navigator.vendor返回一个空字符串，也可能返回字符串"Apple Computer, Inc."或字符串"Google Inc."
+    console.log(navigator.vendor) 
+    // "Google Inc."
+
+    // 3.navigator.platform
+    // navigator.platform属性是一个字符串，通常表示浏览器所在的操作系统。根据HTML实时标准
+    // navigator.platform必须返回一个字符串或表示浏览器所在平台的字符串，例如"MacInter"、"Win32"、"FreeBSD 1386"或"WebTV OS"
+    console.log(navigator.platform)
+    // "Win32"
+
+    // 4.screen.colorDepth和screen.pixelDepth
+    // screen.colorDepth和screen.pixelDepth返回一样的值，即显示器每像素颜色的位深。
+    // screen.colorDepth和screen.pixelDepth属性应该返回输出设备中每像素用于显示颜色的位数，不包含alpha通道。
+    console.log(screen.colorDepth) // 24
+    console.log(screen.pixelDepth) // 24
+
+    // 5.screen.orientation
+    // screen.orientation属性返回一个ScreenOrientation对象，其中包含Screen Orientation API定义的屏幕信息。
+    // 这里面最有意思的属性是angle和type，前者返回相对于默认状态下屏幕的角度，后者返回以下4种枚举值之一：
+    // portrait-primary、portrait-secondary、landscape-primary、landscape-secondary
+    // 垂直看
+    console.log(screen.orientation.type) // portrait-primary
+    console.log(screen.orientation.angle) // 0
+    // 向左转
+    console.log(screen.orientation.type) // landscape-primary
+    console.log(screen.orientation.angle) // 90
+    // 向右转
+    console.log(screen.orientation.type) // landscape-secondary
+    console.log(screen.orientation.angle) // 270
+</script>  
+</html>

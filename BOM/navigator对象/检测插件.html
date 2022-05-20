@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检测插件</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let hasPlugin = function(name) {
+        name = name.toLowerCase()
+        for(let plugin of window.navigator.plugins) {
+            if(plugin.name.toLowerCase().indexOf(name) > -1) {
+                return true
+            }
+        }
+        return false
+    }
+
+    // 检测Flash
+    alert(hasPlugin("Flash"))
+
+    // 检测QuickTime
+    alert(hasPlugin("QuickTime"))
+
+
+    // 旧版本IE中的插件检测
+    function hasIEPlugin(name) {
+        try {
+            new ActiveXObject(name)
+            return true
+        } catch (ex) {
+            return false
+        }
+    }
+
+    // 检测Flash
+    alert(hasIEPlugin("ShockwaveFlash.ShockwaveFlash"))
+    
+    // 检测QuickTime
+    alert(hasIEPlugin("QuickTime.QuickTime"))
+
+
+    // 在所有浏览器中检测Flash
+    function hasFlash() {
+        let result = hasPlugin("Flash")
+        if(!result) {
+            result = hasIEPlugin("ShockwaveFlash.ShockwaveFlash")
+        }
+        return result 
+    }
+
+    // 在所有浏览器中检测QuickTime
+    function hasQuickTime() {
+        let result = hasPlugin("QuickTime")
+        if(!result) {
+            result = hasIEPlugin("QuickTime.QuickTime")
+        }
+        return result 
+    }
+
+    // 检测Flash
+    console.log(hasFlash())
+
+    // 检测QuickTime
+    console.log(hasQuickTime())
+</script>
+</html>

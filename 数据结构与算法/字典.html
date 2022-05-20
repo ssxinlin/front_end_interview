@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字典</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+    // 与集合相似, 字典也是一种存储唯一值的数据结构, 但他是以键值对的形式存储
+    // ES6中有字典-->Map(映射)
+    // 常见操作 增(set) 删(delete) 改(set) 查(get)
+
+    const map = new Map()
+
+    // 增
+    map.set('a', 'aaa')
+    console.log(map)
+    // 删
+    map.delete('a')
+    map.clear()
+    console.log(map)
+    // 改
+    map.set('a','aaaaa')
+    console.log(map)
+    // 查
+    map.get('a')
+    console.log(map.get('a'))
+
+    // 使用Map取两个数组的交集
+    var intersection = function (nums1, nums2) {
+        // new Set(nums1) 去重
+        return [...new Set(nums1)].filter(item => nums2.includes(item))
+    }
+</script>
+</html>

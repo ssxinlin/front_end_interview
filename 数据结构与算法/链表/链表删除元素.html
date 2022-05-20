@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>链表删除元素————LeetCode.203</title>
+</head>
+<body>
+<script>
+    /**
+     * @param {ListNode} head
+     * @param {number} val
+     * @return {ListNode}
+     * 给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回 新的头节点 。
+     * LeetCode中运行有效
+     */
+    function ListNode(val, next) {
+       this.val = (val===undefined ? 0 : val)
+       this.next = (next===undefined ? null : next)
+    }
+    // function Node(element, head){
+    //     this.element = element;
+    //     this.head = head
+    //     this.next = null;
+    // }
+    // class ListNode {
+    //     constructor(val, next) {
+    //         this.val =  (val === undefined ? 0 : val);
+    //         this.next = (next === undefined ? null : next);
+    //     }
+    // }
+
+    // // 递归
+    // var removeElements = function(head = [1,2,6,3,4,5,6], val = 6) {
+    //     if (!head) {
+    //         return head;
+    //     }
+    //     head.next = removeElements(head.next, val);
+    //     return head.val === val ? head.next : head;
+    // };
+    // console.log(removeElements())
+
+    // 迭代
+    var removeElements2 = function(head, val) {
+        const ret = new Node(0, head);
+        console.log("222", ret)
+        let cur = ret;
+        while(cur.next) {
+            if(cur.next.val === val) {
+                cur.next =  cur.next.next;
+                continue;
+            }
+            cur = cur.next;
+        }
+        console.log(cur, ret)
+        return ret.next;
+    };
+    console.log(removeElements2())
+</script>
+</body>
+</html>

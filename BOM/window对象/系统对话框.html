@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统对话框</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // alert警告框
+    alert("Hello World!")
+
+    // confirm确认框
+    if(confirm("Are you Ok?")) {
+        alert("I'm so glad you're Ok!")
+    } else {
+        alert("I'm sorry to hear you're not Ok!")
+    }
+
+    // prompt提示框
+    let result = prompt("What is your name?", "")
+    if(result !== null) {
+        alert("Welcome, " + result)
+    }
+
+    // 显示查找对话框
+    window.find()
+
+    // 显示打印对话框
+    window.print()
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>运算</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 运算中其中一方为字符串，那么就会把另一方也转换为字符串
+    // 如果一方不是字符串或者数字，那么会将它转换为数字或者字符串
+    console.log(1 + '1') // '11'
+    console.log(true + true) // 2
+    console.log(4 + [1,2,3]) // "41,2,3"
+    // 另外对于加法还需要注意这个表达式 'a' + + 'b'
+    console.log('a' + + 'b') // -> "aNaN"
+    // 因为 + 'b' 等于 NaN ，所以结果为 "aNaN" ，你可能也会在一些代码中看到过 + '1' 的形式来快速获取 number 类型。
+    // 对于除了加法的运算符来说，只要其中一方是数字，那么另一方就会被转为数字
+    console.log(4 * '3') // 12
+    console.log(4 * [])  // 0
+    console.log(4 * [1, 2])  // NaN
+
+    // 比较运算符
+    // 1. 如果是对象，就通过 toPrimitive 转换对象
+    // 2. 如果是字符串，就通过 unicode 字符索引来比较
+    let a = {
+        valueOf() {
+            return 0
+        },
+        toString() {
+            return '1'
+        }
+    }
+    console.log(a > -1) // true
+    // 在以上代码中，因为 a 是对象，所以会通过 valueOf 转换为原始类型再比较值。
+</script>
+</html>

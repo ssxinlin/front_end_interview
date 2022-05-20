@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>集合</title>
+</head>
+<body>
+<script>
+    // 一种无序且唯一的数据结构
+    // ES6中有集合, 名为Set
+    // 集合常用操作: 去重,判断某元素是否在集合中,求交集
+
+    // 去重
+    const arr = [1, 1, 2, 2, 3, 3, 4, 5]
+    const arr2 = new Set(arr)
+    console.log(arr2)
+
+    // 判断元素是否在集合中
+    let set = new Set(arr)
+    console.log(set)
+    // add方法
+    set.add(1)
+    set.add('text')
+    set.add({ a: 1, b: 2 })
+    console.log(set)
+    // has方法
+    const has = set.has(9)
+    console.log(has)
+    // delete方法
+    set.delete(1)
+    console.log(set)
+    // 获取size 方法
+    console.log(set.size)
+    // 求交集
+    // const setA = new Set([2,3])
+    // const setB = new Set([...setA])
+    // const set3 =  new Set([...set]).filter(item => set2.has(item))
+    // console.log(set2)
+    // console.log(set3)
+    // 求差集
+    // const set4 = new Set([2,3])
+    // const set5 = new Set([...set]).filter(item => !set4.has(item))
+    // console.log(set4)
+    // console.log(set5)
+    // 数组转为set
+    set2 = new Set([1,2,3])
+
+    console.log("set", set)
+    // 迭代方法 fot ..of
+    for (let item of set) console.log(item)
+    for (let item of set.keys()) console.log(item)
+    for (let item of set.values()) console.log(item)
+    for (let item of set.entries()) console.log(item)
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>**查询字符串**</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let getQueryStringArgs = function() {
+        let qs = (location.search.length > 0 ? location.search.substring(1): "")
+        let args = {}
+        for(let item of qs.split("&").map(kv => kv.split("="))) {
+            console.log("item: ", item)
+            let name = decodeURIComponent(item[0])
+            let value = decodeURIComponent(item[1])
+            if(name.length) {
+                args[name] = value
+            }
+        }
+        console.log("args: ", args)
+        return args
+    }
+    getQueryStringArgs()
+
+    let qs = '?q=javascript&num=10'
+    let searchParams = new URLSearchParams(qs)
+    console.log(searchParams.toString())
+    searchParams.has['num']
+    searchParams.get['num']
+
+    searchParams.set('page', '3')
+    console.log(searchParams.toString())
+
+    searchParams.delete('q')
+    console.log(searchParams.toString())
+
+    for(let param of searchParams) {
+        console.log(param)
+    }
+</script>
+</html>

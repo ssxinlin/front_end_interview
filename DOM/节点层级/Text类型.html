@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类型Text</title>
+</head>
+<body>
+    <div id="myDiv">Hello</div>
+</body>
+<script>
+    console.log(Text)
+    // nodeType等于3
+    // nodeName值为"#text"
+    // nodeValue值为节点中包含的文本
+    // parentNode值为Element对象
+    let div = document.getElementById("myDiv")
+    console.log(div.firstChild) // "Hello"
+    console.log(div.firstChild.nodeType) // "3"
+    console.log(div.firstChild.nodeName) // "#text"
+    console.log(div.firstChild.nodeValue) // "Hello"
+    console.log(div.firstChild.parentNode) 
+    div.firstChild.nodeValue = 'Some other message'
+    
+    // 1.创建文本节点
+    let element1 = document.createElement("div")
+    element1.className = "message"
+    let textNode = document.createTextNode("Hello World")
+    element1.appendChild(textNode)
+    let anotherTextNode = document.createTextNode(" China")
+    element1.appendChild(anotherTextNode)
+    document.body.appendChild(element1)
+
+    // 2.规范化文本节点
+    console.log(element1.childNodes.length)
+    element1.normalize(); // 规范化
+    console.log(element1.childNodes.length)
+    console.log(element1.firstChild.nodeValue)
+
+    // 3.拆分文本节点
+    let newNode = element1.firstChild.splitText(5) // 拆分
+    console.log(element1.firstChild.nodeValue)
+    console.log(newNode.nodeValue)
+    console.log(element1.childNodes.length)
+</script>
+</html>

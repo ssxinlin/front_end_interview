@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览器元数据</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1.Geolocation API
+    // 这个API可以查询宿主系统并尽可能精确地返回设备的位置信息。根据宿主系统的硬件和配置，返回结构的精度可能不一样。
+    // 手机GPS的坐标系统可能具有极高的精度，而IP地址的精度就要差很多。根据Geolocation API规范：
+    // 地理位置信息的主要来源是GPS和IP地址、射频识别（RFID）、Wi-Fi及蓝牙Mac地址、GSM/CDMA蜂窝ID以及用户输入等信息。
+    navigator.geolocation.getCurrentPosition((position) => console.log(position))
+
+    // 2.Connection State和NetworkInformation API
+    // 浏览器会跟踪网络连接状态并以两种方式暴露这些信息：连接事件和navigator.onLine属性。在设备连接到网络时，浏览器会
+    // 记录这个事实并在window对象上触发online事件。相应的，当设备断开网络连接后，浏览器会在window对象上触发offline事
+    // 件。任何时候，都可以通过navigator.onLine属性来确定浏览器的联网状态。这个属性返回一个布尔值，表示浏览器是否联网
+    const connectionStateChange = () => console.log(navigator.onLine)
+    window.addEventListener('online', connectionStateChange)
+    window.addEventListener('offline', connectionStateChange)
+    // 设备联网时： true
+    // 设备断网时： false
+
+    // navigator对象还暴露了NetworkInformation API，可以通过navigator.connection属性使用。这个API提供了一些只读
+    // 属性，并为连接属性变化事件处理程序定义了一个事件对象。
+
+    // 3.Battery Status API
+    // 浏览器可以访问设备电池及充电状态的信息。navigator.getBattery方法会返回一个期约实例，解决为一个
+    // BatteryManager对象
+    navigator.getBattery().then((b) => console.log(b))
+</script>  
+</html>

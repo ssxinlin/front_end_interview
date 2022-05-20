@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>统计页面元素</title>
+</head>
+<body>
+<div>
+  <span></span>
+    <div>
+        <span></span>
+    </div>
+    <script></script>
+</div>
+<script>
+  /*
+  * 统计一个页面共有多少种HTML标签
+  * */
+  let allTags = document.querySelectorAll('*')
+  let tagNodeName = [...allTags].map(n => n.nodeName)
+  let tags = new Set(tagNodeName).size
+  console.log("allTags", allTags)
+  console.log("tagName", tagNodeName)
+  console.log("tags", tags)
+
+  /*
+  * 统计一个页面出现最多的三种HTML标签
+  * */
+  let obj = Object.entries([...document.querySelectorAll('*')].map(n => n.tagName).reduce((pre, cur) => {
+      pre[cur] = (pre[cur] || 0) + 1
+      return pre
+  }, {})).sort((a, b) => b[1] - a[1]).slice(0, 3)
+
+  console.log("obj", obj)
+
+  let tagName = [...allTags].map(n => n.tagName)
+  let tagTotal = tagName.reduce((pre,cur) => {
+      console.log("------", pre, cur)
+      pre[cur] = (pre[cur] || 0) + 1
+      console.log("======", pre)
+      return pre
+  },{})
+  // let test = [...document.querySelectorAll('*')].map(n => n.tagName).reduce((pre, cur) => {
+  //     pre[cur] = (pre[cur] || 0) + 1
+  //     return pre
+  // },{})
+  // console.log("test", test)
+  let tagTotalObj = Object.entries(tagTotal)
+  let tagSort = tagTotalObj.sort((a, b) => b[1] - a[1])
+  let finalTag = tagSort.slice(0, 3)
+  console.log("tagName", tagName)
+  console.log("tagTotal", tagTotal)
+  console.log("tagTotalObj", tagTotalObj)
+  console.log("tagSort", tagSort)
+  console.log("finalTag", finalTag)
+</script>
+</body>
+</html>

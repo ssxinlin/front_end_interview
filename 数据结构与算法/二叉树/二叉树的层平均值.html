@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二叉树的层平均值————LeetCode.637</title>
+</head>
+<body>
+<script>
+    /**
+     给定一个非空二叉树, 返回一个由每层节点平均值组成的数组。
+    */
+    /**
+     示例：
+     输入: [3, 9, 20,null, null, 15, 17]
+     输出: 输出：[3, 14.5, 11]
+     */
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val, left, right) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.left = (left===undefined ? null : left)
+     *     this.right = (right===undefined ? null : right)
+     * }
+     */
+
+    /**
+     * @param {TreeNode} root
+     * @return {number[][]}
+     */
+    var levelOrder = function(root) {
+        let res = [], queue = []
+        queue.push(root)
+        while (root !== null && queue.length) {
+            let length = queue.length
+            let sum = 0
+            while(length--) { // for循环不可以替代while(length--)
+                let node = queue.shift()
+                sum += node.val
+                node.left && queue.push(node.left)
+                node.right && queue.push(node.right)
+            }
+            res.push(sum / length)
+        }
+        return res
+    }
+</script>
+</body>
+</html>

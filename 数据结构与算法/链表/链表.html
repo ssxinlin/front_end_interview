@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>链表</title>
+</head>
+<body>
+<script>
+    // 链表
+    const a = { value: 'a' }
+    const b = { value: 'b' }
+    const c = { value: 'c' }
+    const d = { value: 'd' }
+    a.next = b
+    b.next = c
+    c.next = d
+    let point = a
+    while (point) {
+        console.log("=========",point,  point.value, point.next)
+        point = point.next
+    }
+
+    // 删除链表中重复元素
+    var deleteDuplicates = function(head) {
+        let p = head
+        while (p && p.next) {
+            if(p.val === p.next.val) {
+                p.next = p.next.next
+            } else {
+                p = p.next
+            }
+        }
+        return head
+    }
+    console.log("11111111", deleteDuplicates([1,2,2,3,4,5,5,5,5,6]))
+
+    // 手写一个instanceof
+    function myInstanceof(A, B) {
+        let p = A
+        while (p) {
+            p = p.__proto__
+            if(p === B.prototype) {
+                return true
+            }
+        }
+        return false
+    }
+    function Foo (){}
+    var f = new Foo()
+    console.log(myInstanceof(f, Foo)) // true
+    console.log(myInstanceof(f, Object)) // true
+</script>
+</body>
+</html>

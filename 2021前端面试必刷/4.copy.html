@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>深浅拷贝</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 深拷贝 浅拷贝
+    // 浅拷贝是创建一个新对象，这个对象有着原始对象属性值的一份精准拷贝
+    // 如果属性是基本类型，拷贝的就是基本类型的值，如果属性是引用类型，拷贝的就是内存地址，
+    // 所以如果其中一个对象改变了这个地址，就会影响到另一个对象
+    // 深拷贝是将一个对象从内存中完整的拷贝一份出来，从堆内存中开辟一个新的区域存放新对象，且修改新对象不会影响原对象
+
+    // 浅拷贝和赋值的区别
+    // 赋值：当我们把一个对象赋值给一个新的变量时，赋的其实是该对象的在栈中的地址，而不是堆中的数据。也就是两个对象指向的是同一个内存空间，
+    // 无论哪个对象发生改变，其实都是改变存储空间的内容，因此两个对象是联动的。
+    // 浅拷贝：重新在堆中创建内存，拷贝前后对象的基本数据类型互不影响，但拷贝前后对象的引用类型因共享同一块内存，会相互影响。
+    // 深拷贝：从堆内存中开辟一个新的区域存放新对象，对对象中的子对象进行递归拷贝，拷贝前后两个对象互不影响
+
+    // 赋值
+    var person = {
+        name: '张三',
+        hobby: ['打篮球',['shopping', '玩耍']],
+        date: new RegExp('\\w+'),
+        function(){ }
+    }
+    var person1 = person
+    person1.name = '李四'
+    console.log(person)
+    console.log(person1)
+
+    // 浅拷贝
+    function shallowCopy(obj) {
+        var target = {}
+        for(var i in obj){
+            if(obj.hasOwnProperty(i)){
+                target[i] = obj[i]
+            }
+        }
+        return target
+    }
+    var person2 = shallowCopy(person)
+    person2.name = '王五'
+    person2.hobby[0] = '踢足球'
+    console.log(person)
+    console.log(person2)
+
+    // 深拷贝
+    function deepCopy(obj){
+        var deepObj = {}
+        if(obj === null) return obj
+        if(obj instanceof Date) return new Date(obj)
+        if(obj instanceof RegExp) return new RegExp(obj)
+        if(typeof obj !== 'object') return obj
+        for(var i in obj){
+            if(obj.hasOwnProperty(i)){
+                deepObj[i] = deepCopy(obj[i])
+            }
+        }
+        return deepObj
+    }
+    var person3 = deepCopy(person)
+    person3.name = '赵六'
+    person3.hobby[0] = '玩电脑游戏'
+    console.log(person)
+    console.log(person3)
+
+    var person4 = JSON.parse(JSON.stringify(person))
+    person4.name = '孙七'
+    person4.hobby[0] = '玩手机'
+    console.log(person)
+    console.log(person4)
+
+    // 浅拷贝的实现方式
+    // Object.assign()
+    // ... 扩展运算符
+    // concat
+    // lodash clone
+    // obj.hasOwnProperty 递归
+
+    // 深拷贝的实现方式
+    // $.extend
+    // lodash deepClone
+    // Json.parse(Json.stringify())
+    // obj.hasOwnProperty 递归
+</script>
+</html>

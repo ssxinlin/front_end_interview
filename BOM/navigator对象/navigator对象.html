@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>navigator对象</title>
+</head>
+<body>
+    
+</body>
+<script>
+    console.log(navigator)
+    console.log("navigator.appCodeName: ", navigator.appCodeName) // 即使在非Mozilla浏览器中也会返回"Mozilla"
+    console.log("浏览器全名: ", navigator.appName) // 浏览器全名
+    console.log("浏览器版本: ", navigator.appVersion) // 浏览器版本。通常与实际的浏览器版本不一致
+    console.log("navigator.connection: ", navigator.connection) // 返回暴露的Network Information API的NetworkInformation对象
+    console.log("是否启用了cookie: ", navigator.cookieEnabled) // 返回布尔值，表示是否启用了cookie
+    console.log("navigator.credentials: ", navigator.credentials) // 返回暴露Credentials Management API的CredentialsContainer对象
+    console.log("navigator.doNotTrack: ", navigator.doNotTrack) // 返回用户的“不跟踪”（do-not-track）设置
+    console.log("navigator.geolocation: ", navigator.geolocation) // 返回暴露Geolocation API的Geolocation对象
+    console.log("处理器核心数量: ", navigator.hardwareConcurrency) // 返回设备的处理器核心数量
+    console.log("浏览器是否启用了Java: ", navigator.javaEnabled()) // 返回布尔值，表示浏览器是否启用了Java
+    console.log("浏览器的主语言: ", navigator.language) // 返回浏览器的主语言
+    console.log("浏览器偏好的语言数组: ", navigator.languages) // 返回浏览器偏好的语言数组
+    console.log("navigator.mediaCapabilities: ", navigator.mediaCapabilities) // 返回暴露Media Capabilities API的MediaCapabilities对象
+    console.log("可用的媒体设备: ", navigator.mediaDevices) // 返回可用的媒体设备
+    console.log("设备触摸屏支持的最大触点数: ", navigator.maxTouchPoints) // 返回设备触摸屏支持的最大触点数
+    console.log("浏览器中注册的MIME类型数组: ", navigator.mimeTypes) // 返回浏览器中注册的MIME类型数组
+    console.log("浏览器是否联网: ", navigator.onLine) // 返回布尔值，表示浏览器是否联网
+    console.log("navigator.permissions: ", navigator.permissions) // 返回暴露Permissions API的Permissions对象
+    console.log("浏览器运行的系统平台: ", navigator.platform) // 返回浏览器运行的系统平台
+    console.log("浏览器安装的插件数组: ", navigator.plugins) // 返回浏览器安装的插件数组。在IE中，这个数组包含页面中所有<embed>元素
+    console.log("产品名称: ", navigator.product) // 返回产品名称（通常是“Gecko”）
+    console.log("产品的额外信息: ", navigator.productSub) // 返回产品的额外信息（通常是Gecko的版本）
+    // console.log("navigator.registerProtocolHandler(): ", navigator.registerProtocolHandler()) // 将一个网站注册为特定协议的处理程序
+    // console.log("navigator.requestMediaKeySystemAccess(): ", navigator.requestMediaKeySystemAccess()) // 返回一个期约，解决为MediaKeySystemAccess对象
+    // console.log("navigator.sendBeacon(): ", navigator.sendBeacon()) // 异步传输一些小数据
+    console.log("navigator.serviceWorker: ", navigator.serviceWorker) // 返回用来与ServiceWorker实例交互的ServiceWorkerContainer
+    // console.log("navigator.share(): ", navigator.share()) // 返回当前平台的原生共享机制
+    console.log("navigator.storage: ", navigator.storage) // 返回暴露Storage API的StorageManager对象
+    console.log("浏览器的用户代理字符串: ", navigator.userAgent) // 返回浏览器的用户代理字符串
+    console.log("浏览器的厂商名称: ", navigator.vendor) // 返回浏览器的厂商名称
+    console.log("浏览器厂商的更多信息: ", navigator.vendorSub) // 返回浏览器厂商的更多信息
+    // console.log("navigator.vibrate(): ", navigator.vibrate()) // 触发设备振动
+    console.log("浏览器当前是否被自动化程序控制: ", navigator.webdriver) // 返回浏览器当前是否被自动化程序控制
+</script>
+</html>

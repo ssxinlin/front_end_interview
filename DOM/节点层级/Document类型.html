@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document类型</title>
+</head>
+<body>
+    <div id="myDiv">Some text</div>
+
+    <fieldset>
+        <legend>Which color do you perfer?</legend>
+        <ul>
+            <li>
+                <input type="radio" value="red" name="color" id="colorRed">
+                <label for="colorRed">Red</label>
+            </li>
+            <li>
+                <input type="radio" value="green" name="color" id="colorGreen">
+                <label for="colorGreen">Green</label>
+            </li>
+            <li>
+                <input type="radio" value="blue" name="color" id="colorBlue">
+                <label for="colorBlue">Blue</label>
+            </li>
+        </ul>
+    </fieldset>
+
+</body>
+<script>
+    console.log(document.nodeType) // 9
+    console.log(document.nodeName) // "#document"
+    console.log(document.nodeValue) // null
+    console.log(document.parentNode) // null
+    console.log(document.ownerDocument) // null
+
+    // 1.文档子节点
+    let html = document.documentElement  // 取得对<html>的引用
+    let doctype = document.doctype  // 取得对<!doctype>的引用
+    let body = document.body // 取得对<body>的引用
+    console.log(html, document)
+    console.log(body === document.childNodes[1])
+    console.log(body === document.lastChild)
+
+    // 2.文档信息
+    let originalTitle = document.title  // 读取文档标题
+    console.log(document.title)
+    document.title = 'New page title'
+    console.log(document.title)
+    
+    let url = document.URL  // 读取完整的URL
+    let domain = document.domain  // 取得域名
+    let referrer = document.referrer  // 取得来源
+    console.log(url)
+    console.log(domain)
+    console.log(referrer)
+
+    // 3.定位元素
+    let div = document.getElementById("myDiv")
+    // let images = document.getElementsByTagName("img")
+    // let myImage = imgaes.namedItem("myImage")
+    let allElements = document.getElementsByTagName("*")
+    console.log(allElements)
+
+    let radios = document.getElementsByName("color")
+    console.log(radios)
+
+    // 4.特殊集合
+    console.log(document.anchors) // 包含文档中所有待name属性的<a>元素
+    console.log(document.applets) // 包含文档中所有<applets>元素（废弃）
+    console.log(document.forms) // 包含文档中所有<form>元素
+    console.log(document.images) // 包含文档中所有<img>元素
+    console.log(document.links) // 包含文档中所有带href属性的<a>元素
+
+    // 5.DOM兼容性检测
+    console.log(document.implementation)
+    let hasXmlDom = document.implementation.hasFeature("XML", "1.0") // 可以使用hasFeature方法测试
+    console.log(hasXmlDom)
+    // 由于hasFeature()的返回值并不可靠。目前这个方法已经被废弃，不再建议使用。
+
+</script>
+<script type="text/javascript">
+// 6.文档写入
+document.write("<strong>" + (new Date()).toString() + "<strong>")
+
+// window.onload事件处理程序，调用document.write()的函数推迟到页面加载完毕执行,将会重写整个页面内容。  
+window.onload = function() {  
+    document.write("Hello World!")
+}
+</script>  
+</html>

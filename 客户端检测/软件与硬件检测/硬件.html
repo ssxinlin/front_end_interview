@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>硬件</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1.处理器核心数
+    // navigator.hardwareConcurrency属性返回浏览器支持的逻辑处理器核心数量，包含表示核心数的一个整数值（如果核心
+    // 数无法确定，这个值就是1）。关键在于，这个值表示浏览器可以并行执行的最大工作线程数量，不一定是实际的CPU核心数
+    console.log(navigator.hardwareConcurrency)
+
+    // 2.设备内存大小
+    // navigator.deviceMemory属性返回设备大致的系统内存大小，包含单位为GB的浮点数（舍入为最接近的2的幂：512MB返回
+    // 0.5,4GB返回4）
+    
+    // 3.最大触点数
+    // navigator.maxTouchPoints属性返回触摸屏支持的最大关联触点数量，包含一个整数值。
+    console.log(navigator.maxTouchPoints)
+</script>  
+</html>

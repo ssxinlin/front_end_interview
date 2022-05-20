@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用NodeList</title>
+</head>
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</body>
+<script>
+   let divs = document.getElementsByTagName("div")
+   for(let i = divs.length; i > 0; --i) {
+       let div = document.createElement("div")
+       document.body.appendChild(div)
+   }
+   // 一般来说，最好限制操作NodeList的次数。因为每次查询都会搜索整个文档，所以最好把查询到的NodeList缓存起来。
+</script>
+</html>

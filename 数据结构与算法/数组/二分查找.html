@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二分查找————LeetCode.704</title>
+</head>
+<body>
+<script>
+    // 给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。
+    // 示例
+    // 输入: nums = [-1,0,3,5,9,12], target = 9
+    // 输出: 4
+    // 解释: 9 出现在 nums 中并且下标为 4
+
+    // 提示：
+    // 你可以假设 nums 中的所有元素是不重复的。
+    // n 将在 [1, 10000]之间。
+    // nums 的每个元素都将在 [-9999, 9999]之间。
+
+    // 这道题目的前提是数组为有序数组，同时题目还强调数组中无重复元素，因为一旦有重复元素，使用二分查找法返回的元素下标可能不是唯一的，这些都是使用二分法的前提条件，
+    // 当大家看到题目描述满足如上条件的时候，可要想一想是不是可以用二分法了。
+
+    // 我们定义 target 是在一个在左闭右闭的区间里，也就是[left, right] （这个很重要非常重要）。
+    //
+    // 区间的定义这就决定了二分法的代码应该如何写，因为定义target在[left, right]区间，所以有如下两点：
+    // while (left <= right) 要使用 <= ，因为left == right是有意义的，所以使用 <=
+    // if (nums[middle] > target) right 要赋值为 middle - 1，因为当前这个nums[middle]一定不是target，那么接下来要查找的左区间结束下标位置就是 middle - 1
+
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number}
+     */
+    var search = function(nums = [-1,0,3,5,9,12], target = 9) {
+        let left = 0 , right = nums.length - 1
+        while (left <= right) {
+            let mid = Math.floor((right - left) / 2) + left
+            if(nums[mid] < target) {
+                left = mid + 1
+            } else if (nums[mid] > target) {
+                right = mid - 1
+            } else {
+                return mid
+            }
+        }
+        return -1
+    };
+    var searchInsert = function(nums = [-1,0,3,5,9,12], target = 9) {
+        let left = 0, right = nums.length - 1
+        while (left <= right) {
+            let mid = ((right - left) >> 1) + left
+            if(nums[mid] < target) {
+                left = mid + 1
+            } else if(nums[mid] > target) {
+                right = mid - 1
+            } else {
+                return mid
+            }
+        }
+    };
+    console.log(searchInsert())
+</script>
+</body>
+</html>

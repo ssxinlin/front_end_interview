@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二叉树的层序遍历II————LeetCode.107</title>
+</head>
+<body>
+<script>
+    /**
+     给定一个二叉树，返回其节点值自底向上的层序遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
+    */
+    /**
+     示例：
+     二叉树：[3,9,20,null,null,15,7],
+     输出：[
+        [15,7]，
+        [9,20],
+        [3]
+     ]
+     */
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val, left, right) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.left = (left===undefined ? null : left)
+     *     this.right = (right===undefined ? null : right)
+     * }
+     */
+
+    /**
+     * @param {TreeNode} root
+     * @return {number[][]}
+     */
+    var levelOrder = function(root) {
+        let res = [], queue = []
+        queue.push(root)
+        while (root !== null && queue.length) {
+            let length = queue.length
+            let curLevel = []
+            while(length--) { // for循环可以替代while(length--)
+                let node = queue.shift()
+                curLevel.push(node.val)
+                node.left && queue.push(node.left)
+                node.right && queue.push(node.right)
+            }
+            res.push(curLevel)
+        }
+        return res.reverse()
+    }
+</script>
+</body>
+</html>

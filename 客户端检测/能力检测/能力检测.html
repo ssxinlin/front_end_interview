@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>能力检测</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 能力检测
+
+    function getElement(id) {
+        if(document.getElementById) {
+            return document.getElementById(id)
+        } else if (document.all) {
+            return document.all[id]
+        } else {
+            throw new Error("No way to retrieve element!")
+        }
+    } 
+
+
+    // 不正确的检测方式
+    // 检测到document.all存在并不意味着浏览器是IE，也可能是某个早期版本的Opera，
+    // 既支持document.all也支持window.innerWidth
+    function getWindowWidth() {
+        if(document.all) {  // 假设IE
+            return document.documentElement.clientWidth; // 不正确的用法！
+        } else {
+            return window.innerWidth
+        }
+    }   
+</script>  
+</html>

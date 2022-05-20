@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本用法</title>
+</head>
+<body>
+</body>
+<script>
+    let observer = new MutationObserver((mutationRecords, mutationObserver) => console.log(mutationRecords,mutationObserver))
+
+    // 1.observe()方法
+    observer.observe(document.body, { attributes: true })
+    document.body.className = 'foo'
+    console.log('Changed body class')
+    // 注意，回调中的console.log()是后执行的。这表明回调并非与实际的DOM变化同步执行。
+
+    // 2.回调与MutationRecord
+    document.body.setAttribute('foo', 'bar')
+    document.body.setAttributeNS('baz', 'foo', 'bar')
+    // 连续修改会生成多个MutationRecord实例，下次回调执行时就会收到包含所有这些实例的数组，顺序为变化事件发生的顺序。
+    document.body.className = 'baz'
+    // document.body.className = 'foo'
+    // document.body.className = 'bar'
+
+
+    // 下面列出了MutationRecord实例的属性。
+    // target; 被修改影响的目标节点
+    // type; 字符串，表示变化的类型: "attributes"、"characterData"或"childList"
+    // oldValue; "attributes"或"characterData"的变化事件会设置这个属性为被替换的值"childList"类型的变化始终将这个属性设置为null。
+    // attributeName; 对于"attributes"类型的变化，这里保存被修改属性的名字
+    // attributeNamespace; 对于使用了命名空间的"attributes"类型的变化，这里保存被修改属性的名字
+    // addedNodes; 对于"childList"类型的变化，返回包含变化中添加节点的NodeList，默认为空NodeList
+    // removeNodes; 对于"childList"类型的变化，返回包含变化中删除节点的NodeList，默认为空NodeList
+    // previousSibling; 对于"childList"类型的变化，返回包含变化节点的前一个同胞Node，默认为null
+    // nextSibling; 对于"childList"类型的变化，返回包含变化节点的后一个同胞Node，默认为null
+
+
+    // 3.disconnect()方法
+    // 要提前终止执行回调，可以调用disconnect()方法
+    document.body.className = 'foo'
+    observer.disconnect()
+    document.body.className = 'baz'
+    // 没有输出日志
+    // 要想让已经加入任务队列的回调执行，可以使用setTimeout()让已经入列的回调执行完毕再调用disconnect()
+    // setTimeout(() => {
+    //   observer.disconnect()
+    //   document.body.className = 'baz'   
+    // })
+    
+    // 4.复用MutationObserver
+    // 多次调用observe()方法，可以复用一个MutationObserver对象观察多个不同的目标节点
+    let obj = new MutationObserver((item) => console.log(item.map((x) => x.target)))
+    // 向页面主体添加两个子节点
+    let childA = document.createElement('div')
+    let childB = document.createElement('span')
+    document.body.appendChild(childA)    
+    document.body.appendChild(childB)
+    // 观察两个子节点
+    obj.observe(childA, { attributes: true })
+    obj.observe(childB, { attributes: true })
+    // disconnect()方法是一个“一刀切”的方案，调用它停止观察所有目标
+    obj.disconnect()
+    // 修改两个子节点属性
+    childA.setAttribute('foo', 'bar')
+    childB.setAttribute('foo', 'bar')
+    
+    // 5.重用MutationObserver
+    // 调用disconnect()并不会结束MutationObserver的生命。还可以重新使用这个观察者，再将它关联到新的目标节点。
+    let server = new MutationObserver(() => console.log('<body> attribute changed'))
+    server.observe(document.body, { attributes: true })
+    // 这行代码会触发变化事件
+    document.body.setAttribute('foo', 'bar')
+    setTimeout(() => {
+        server.disconnect()
+        // 这行代码不会触发变化事件
+        document.body.setAttribute('bar', 'baz')
+    }, 0)
+    setTimeout(() => {
+        // Reattach
+        server.observe(document.body, { attributes: true })
+        // 这行代码会触发变化事件
+        document.body.setAttribute('baz', 'qux')
+    }, 0)
+    
+</script>
+</html>

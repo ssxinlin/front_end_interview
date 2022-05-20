@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>异步回调与记录队列</title>
+</head>
+<body>
+</body>
+<script>
+    // 1.每次MutationRecord被添加到MutationObserver的记录队列时，仅当之前没有已排期的微任务回调时（队列中微任
+    // 务长度为0），才会将观察者注册的回调（在初始化MutationObserver时传入）作为微任务调度到任务队列上。这样可以
+    // 保证记录队列的内容不会被回调处理两次。
+
+    // 2.takeRecords()方法
+    // 调用MutationObserver实例的takeRecords()方法可以清空记录队列，取出并返回其中的所有MutationRecord实例。
+    let observer = new MutationObserver((mutationObserver) => console.log(mutationObserver))
+    observer.observe(document.body, { attributes: true })
+    document.body.className = 'foo'
+    document.body.className = 'bar'
+    document.body.className = 'baz'
+    console.log(observer.takeRecords())
+    console.log(observer.takeRecords())
+    // 这在希望断开与观察目标的联系，但又希望处理由于调用disconnect()而被抛弃的记录队列中的MutationRecord实例
+    // 时比较有用。
+</script>
+</html>
