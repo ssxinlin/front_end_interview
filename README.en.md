@@ -6,17 +6,15 @@ directly download on GITee, do not need to put in the computer local.
 
 #### download address
 
-https://gitee.com/watermelon_hits_the_earth_admin/front-end-interview.git
+https://github.com/ssxinlin/front_end_interview.git
 
 #### branch
 
-In addition to the master branch, there are two other branches:
-suxinlin
-zhanpeng
+Currently there is only the main branch, main
 
 ### download course：
 
-git clone -b 'branch' https://gitee.com/watermelon_hits_the_earth_admin/front-end-interview.git
+git clone https://github.com/ssxinlin/front_end_interview.git
 
 ### process
 
@@ -24,8 +22,8 @@ git init                                                // init warehouse
 git add .                                               // add something to local working-area or  git add   (fileName)
 git commit -m “first commit”                            // commit to local warehouse
 git remote add origin  origin-warehouse-address         // add to origin warehouse
-git pull origin master                                  // Pull from master branch to master branch
-git push -u origin master                               // Push the master branch of the local repository to the master branch of the remote repository
+git pull origin main                                  // Pull from main branch to master branch
+git push -u origin main                               // Push the main branch of the local repository to the master branch of the remote repository
 
 
 # follow-up

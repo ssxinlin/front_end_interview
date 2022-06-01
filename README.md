@@ -6,19 +6,16 @@
 
 #### 下载地址
 
-https://gitee.com/watermelon_hits_the_earth_admin/front-end-interview.git
+https://github.com/ssxinlin/front_end_interview.git
 
 
 #### 分支
 
-目前除了主分支master之外，还有两个，分别是：
-suxinlin
-zhanpeng
-
+目前只有主分支main
 
 ### 下载教程：
 
-git clone -b '分支' https://gitee.com/watermelon_hits_the_earth_admin/front-end-interview.git
+git clone https://github.com/ssxinlin/front_end_interview.git
 
 
 ### 流程步骤
@@ -27,8 +24,8 @@ git init                                    // 初始化仓库
 git add .                                   // 添加到本地暂存区   或用  git add   (文件name)
 git commit -m “first commit”                // 提交到本地仓库
 git remote add origin  远程仓库地址           // 添加远程仓库
-git pull origin master                      // 把远程仓库master分支拉取到本地仓库master分支
-git push -u origin master                   // 把本地仓库的master分支推送到远程仓库master分支
+git pull origin main                      // 把远程仓库main分支拉取到本地仓库master分支
+git push -u origin main                   // 把本地仓库的main分支推送到远程仓库master分支
 
 
 # 后续
