@@ -1,8 +1,8 @@
 # front-end-interview
 
 #### introduce
-Mainly in order to facilitate the storage of the front end test questions and knowledge points, put these files on gITee hosting, when necessary, 
-directly download on GITee, do not need to put in the computer local.
+Mainly in order to facilitate the storage of the front end test questions and knowledge points, put these files on GitHub hosting, when necessary, 
+directly download on GitHub, do not need to put in the computer local.
 
 #### download address
 
